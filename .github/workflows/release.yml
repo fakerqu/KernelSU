@@ -9,9 +9,13 @@ jobs:
   build-manager:
     uses: ./.github/workflows/build-manager.yml
     secrets: inherit
+  build-a14-kernel:
+    uses: ./.github/workflows/build-kernel-a14.yml
+    secrets: inherit
   release:
     needs:
       - build-manager
+      - build-a14-kernel
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts
